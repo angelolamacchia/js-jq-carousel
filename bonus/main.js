@@ -1,8 +1,12 @@
 $(document).ready( function() {
 
-    $( ".nav" ).append( '<i class="fas fa-circle circle1 active"></i>' );
-    for (var i=0; i<3; i++) {
-        $( ".nav" ).append( '<i class="fas fa-circle circle' + (i+2) +'"></i>' );
+    
+    for (var i=1; i<=4; i++) {
+        if (i==1) {
+            $( ".nav" ).append( '<i class="fas fa-circle active circle' + (i) +'"></i>' );
+        } else {
+            $( ".nav" ).append( '<i class="fas fa-circle circle' + (i) +'"></i>' );
+        }   
     }
     
 
@@ -36,17 +40,16 @@ function nextImg() {
     var imgActive = $(".images img.active");
     var circleActive = $(".nav i.active");
 
-    if (imgActive.hasClass("last")) {
-        imgActive.removeClass("active");
+    imgActive.removeClass("active");
+    circleActive.removeClass("active");
+
+    if (imgActive.hasClass("last")) {        
         $(".images img.first").addClass("active");
 
-        circleActive.removeClass("active");
         $(".nav i.circle1").addClass("active");
     } else {
-        imgActive.removeClass("active");
         imgActive.next("img").addClass("active");
 
-        circleActive.removeClass("active");
         circleActive.next("i").addClass("active");
     }    
 }
@@ -55,17 +58,14 @@ function prevImg() {
     var imgActive = $(".images img.active");
     var circleActive = $(".nav i.active");
 
+    imgActive.removeClass("active");
+    circleActive.removeClass("active");
+
     if (imgActive.hasClass("first")) {
-        imgActive.removeClass("active");
         $(".images img.last").addClass("active");
-        
-        circleActive.removeClass("active");
         $(".nav i.circle4").addClass("active")
     } else {
-        imgActive.removeClass("active");
         imgActive.prev("img").addClass("active");
-
-        circleActive.removeClass("active");
         circleActive.prev("i").addClass("active");
     }    
 }
